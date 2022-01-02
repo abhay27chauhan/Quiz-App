@@ -5,10 +5,10 @@ import dotsLong from "assets/dotsLong.svg";
 
 import styles from "./Card.module.scss";
 
-function Card({ children }) {
+function Card({ children, color }) {
     return (
         <div className={styles.container}>
-            <div className={styles.card}>
+            <div className={styles.card} style={{ background: color }}>
                 {children}
             </div>
             <div className={styles.dots}>
