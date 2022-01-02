@@ -1,0 +1,38 @@
+@import "styles/variables";
+
+.container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 43px 154px 43px 106px;
+    width: 100%;
+
+    .left {
+        width: 125px;
+        height: 57px;
+        flex-shrink: 0;
+
+        img {
+            height: 100%;
+            width: 100%;
+        }
+    }
+
+    .right {
+        display: flex;
+        flex-grow: 1;
+        justify-content: flex-end;
+
+        ul {
+            display: flex;
+            gap: 60px;
+        }
+
+        a {
+            font-size: 1rem;
+            color: $text-purple;
+            font-weight: normal;
+            line-height: 24px;
+        }
+    }
+}

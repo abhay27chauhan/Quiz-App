@@ -1,0 +1,43 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
+@import "styles/variables.scss";
+
+* {
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+body {
+    margin: 0;
+}
+
+a {
+    color: black;
+    text-decoration: none;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+button {
+    cursor: pointer;
+}
+
+.app {
+    position: relative;
+
+    &::before {
+        content: "";
+        position: absolute;
+        z-index: -1;
+        height: 400%;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        -webkit-clip-path: polygon(0 0,100% 0,100% 91%,0 100%);
+        clip-path: polygon(0 0,100% 0,100% 91%,0 100%);
+        background: $bg-color;
+    }
+}
