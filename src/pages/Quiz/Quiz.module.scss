@@ -1,0 +1,71 @@
+@import "styles/variables";
+
+.quizContainer {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+
+    p {
+        margin: 0;
+        color: $text-black;
+    }
+
+    .top,
+    .middle,
+    .bottom {
+        display: flex;
+        justify-content: space-between;
+        padding: 20px;
+    }
+
+    .top {
+        height: 100%;
+    }
+
+    .middle {
+        height: 100%;
+        background: $bg-color;
+    }
+
+    .bottom {
+        height: 100%;
+        background: $gradient-two;
+
+        .bottomRight{
+            display: flex;
+            flex-shrink: 0;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .bottomLeft {
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+            gap: 5px;
+        }
+
+        .heading, .stuck {
+            font-size: 0.875rem;
+            color: $text-white;
+        }
+
+        input {
+            width: 50%;
+            padding: 3px 2px;
+
+            &::placeholder {
+                font-size: 0.875rem;
+                color: $text-gray;
+            }
+        }
+    }
+
+    .heading {
+        font-weight: normal;
+        font-size: 0.875rem;
+        line-height: 21px;
+        color: $text-gray;
+    }
+}

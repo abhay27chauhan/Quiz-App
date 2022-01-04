@@ -1,7 +1,7 @@
 import React from "react";
 
 import Card from "components/Card/Card";
-import { Button } from "components/StyledComponent/Button";
+import { LinkButton } from "components/StyledComponent/Button";
 
 import styles from "./Result.module.scss";
 
@@ -19,7 +19,7 @@ function Result() {
                         <p>Avg Speed</p>
                     </div>
                 </div>
-                <Button>Play Again</Button>
+                <LinkButton to="/">Play Again</LinkButton>
             </div>
         </Card>
     );

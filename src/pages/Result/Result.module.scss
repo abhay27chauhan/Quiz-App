@@ -1,6 +1,8 @@
-@import "styles/variables.scss";
+@import "styles/variables";
 
 .subCard {
+    display: flex;
+    flex-direction: column;
     width: 24.7%;
     text-align: center;
     

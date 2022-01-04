@@ -1,4 +1,5 @@
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { Toaster } from "react-hot-toast";
 
 import Navbar from "components/Navbar/Navbar";
 import Home from "pages/Home/Home";
@@ -10,6 +11,13 @@ import "styles/main.scss";
 function App() {
     return (
         <Router>
+            <Toaster
+                toastOptions={{
+                    duration: 4000,
+                    position: "bottom-left",
+                    style: { marginBottom: "30px", marginLeft: "30px" },
+                }}
+            />
             <div className="app">
                 <Navbar />
                 <Switch>
