@@ -6,11 +6,13 @@ function StateProvider({ children }) {
     const [correctCount, setCorretCount] = useState(0);
     const [currentQuestion, setCurrentQuestion] = useState(0);
     const [totalQuestions, setTotalQuestions] = useState(0);
+    const [timeTaken, setTimeTaken] = useState([]);
 
     const reset = () => {
         setCorretCount(0);
         setCurrentQuestion(0);
         setTotalQuestions(0);
+        setTimeTaken([]);
     }
     const value = {
         correctCount,
@@ -20,6 +22,8 @@ function StateProvider({ children }) {
         totalQuestions,
         setTotalQuestions,
         reset,
+        timeTaken,
+        setTimeTaken,
     };
 
     return (

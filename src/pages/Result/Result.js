@@ -6,11 +6,13 @@ import { useStateValue } from "context/StateProvider";
 
 import styles from "./Result.module.scss";
 import { Redirect } from "react-router-dom/cjs/react-router-dom.min";
-import { calAccuracy } from "utils/utils";
+import { calAccuracy, calAverage } from "utils/utils";
 
 function Result() {
-    const { totalQuestions, currentQuestion, correctCount } = useStateValue();
+    const { totalQuestions, currentQuestion, correctCount, timeTaken } = useStateValue();
     const accuracy = calAccuracy(correctCount, totalQuestions);
+    const averageTime = calAverage(timeTaken)/totalQuestions;
+    console.log(timeTaken);
 
     return currentQuestion === 0 || currentQuestion < totalQuestions - 1 ? (
         <Redirect to="/" />
@@ -23,7 +25,7 @@ function Result() {
                         <p>Accuracy</p>
                     </div>
                     <div className={styles.avgTime}>
-                        <p className={styles.value}>4.3s</p>
+                        <p className={styles.value}>{averageTime}s</p>
                         <p>Avg Speed</p>
                     </div>
                 </div>

@@ -8,12 +8,14 @@ import useFetch from "Hooks/useFetch/useFetch";
 import { Button } from "components/StyledComponent/Button";
 import Loader from "components/Loader/Loader";
 import { useStateValue } from "context/StateProvider";
+import useTimer from "Hooks/useTimer/useTimer";
 
 import styles from "./Quiz.module.scss";
 
 function Quiz() {
     const history = useHistory();
     const [response, loading, error] = useFetch(url);
+    const [m, s, reset, setPaused] = useTimer();
 
     const [answer, setAnswer] = useState("");
     const [inputDisabled, setInputDisabled] = useState(false);
@@ -23,11 +25,13 @@ function Quiz() {
         currentQuestion,
         setCurrentQuestion,
         setTotalQuestions,
+        setTimeTaken,
     } = useStateValue();
 
     function doIfKeyIsEnter(e, correctAnswer) {
         if (e.key === "Enter" && answer.trim() !== "") {
             setInputDisabled(true);
+            setPaused(true);
             const isCorrect = correctAnswer
                 .toLowerCase()
                 .includes(answer.trim().toLowerCase());
@@ -41,6 +45,9 @@ function Quiz() {
             currentQuestion < response.length - 1
                 ? setCurrentQuestion(currentQuestion + 1)
                 : history.push("/result");
+            setTimeTaken((state) => [...state, m*60 + s])
+            reset();
+            setPaused(false);
             setShowAnswer(false);
             setInputDisabled(false);
         } else if (e.key === "Enter" && answer.trim() == "") {
@@ -66,7 +73,17 @@ function Quiz() {
                                 {response[currentQuestion].category}
                             </p>
                         </div>
-                        <div></div>
+                        <div className={styles.timer}>
+                            <div className={styles.timerLeft}>
+                                <p>{m < 10 ? `0${m}` : m}</p>
+                                <p>MIN</p>
+                            </div>
+                            <p>:</p>
+                            <div className={styles.timerRight}>
+                                <p>{s < 10 ? `0${s}` : s}</p>
+                                <p>SEC</p>
+                            </div>
+                        </div>
                     </div>
                     <div className={styles.middle}>
                         <div>
