@@ -25,7 +25,7 @@ function Result() {
                         <p>Accuracy</p>
                     </div>
                     <div className={styles.avgTime}>
-                        <p className={styles.value}>{averageTime}s</p>
+                        <p className={styles.value}>{Math.round(averageTime)}s</p>
                         <p>Avg Speed</p>
                     </div>
                 </div>

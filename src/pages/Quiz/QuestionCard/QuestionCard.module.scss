@@ -1,0 +1,16 @@
+@import "styles/variables";
+
+.middle {
+    height: 100%;
+    background: $bg-color;
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+
+    .heading {
+        font-weight: normal;
+        font-size: 0.875rem;
+        line-height: 21px;
+        color: $text-gray;
+    }
+}

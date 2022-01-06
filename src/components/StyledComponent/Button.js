@@ -6,7 +6,7 @@ export const LinkButton = styled(Link)`
     height: 40px;
     font-size: 1em;
     font-weight: 500;
-    margin: 1em;
+    margin: 1em auto; 
     padding: 0.25em 1em;
     border-radius: 5px;
     color: #ffffff;

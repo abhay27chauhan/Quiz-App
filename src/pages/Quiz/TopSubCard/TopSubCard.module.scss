@@ -1,0 +1,30 @@
+@import "styles/variables";
+
+.top {
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+
+    .heading {
+        font-weight: normal;
+        font-size: 0.875rem;
+        line-height: 21px;
+        color: $text-gray;
+    }
+
+    .timer {
+        padding: 8px;
+        background: $bg-gray;
+        border-radius: 5px;
+        display: flex;
+        gap: 8px;
+        align-items: center;
+
+        p {
+            text-align: center;
+            font-size: 0.875rem;
+            color: $text-white;
+        }
+    }
+}
