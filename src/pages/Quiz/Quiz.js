@@ -1,17 +1,56 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { Redirect, useHistory } from "react-router-dom";
+import toast from "react-hot-toast";
 
 import Card from "components/Card/Card";
 import url from "./endpoint";
 import useFetch from "Hooks/useFetch/useFetch";
 import { Button } from "components/StyledComponent/Button";
+import Loader from "components/Loader/Loader";
+import { useStateValue } from "context/StateProvider";
 
 import styles from "./Quiz.module.scss";
-import Loader from "components/Loader/Loader";
-import { Redirect } from "react-router-dom/cjs/react-router-dom.min";
 
 function Quiz() {
+    const history = useHistory();
     const [response, loading, error] = useFetch(url);
-    console.log(response);
+
+    const [answer, setAnswer] = useState("");
+    const [inputDisabled, setInputDisabled] = useState(false);
+    const [showAnswer, setShowAnswer] = useState(false);
+    const {
+        setCorretCount,
+        currentQuestion,
+        setCurrentQuestion,
+        setTotalQuestions,
+    } = useStateValue();
+
+    function doIfKeyIsEnter(e, correctAnswer) {
+        if (e.key === "Enter" && answer.trim() !== "") {
+            setInputDisabled(true);
+            const isCorrect = correctAnswer
+                .toLowerCase()
+                .includes(answer.trim().toLowerCase());
+            if (isCorrect) {
+                toast.success("Correct Answer!!");
+                !showAnswer && setCorretCount((state) => state + 1);
+            } else {
+                toast.error("Wrong Answer!!");
+            }
+            setAnswer("");
+            currentQuestion < response.length - 1
+                ? setCurrentQuestion(currentQuestion + 1)
+                : history.push("/result");
+            setShowAnswer(false);
+            setInputDisabled(false);
+        } else if (e.key === "Enter" && answer.trim() == "") {
+            toast.error("Type answer before submitting!!");
+        }
+    }
+
+    useEffect(() => {
+        setTotalQuestions(response?.length);
+    }, [response]);
 
     return (
         <Card color="#FFFFFF">
@@ -22,27 +61,54 @@ function Quiz() {
                     <div className={styles.top}>
                         <div>
                             <p className={styles.heading}>TOPIC</p>
-                            <p className={styles.info}>Product Mangement</p>
+                            <p className={styles.info}>
+                                {" "}
+                                {response[currentQuestion].category}
+                            </p>
                         </div>
                         <div></div>
                     </div>
                     <div className={styles.middle}>
                         <div>
-                            <p className={styles.heading}>QUESTION 1 of 6</p>
+                            <p className={styles.heading}>
+                                QUESTION {currentQuestion + 1} of{" "}
+                                {response.length}
+                            </p>
                             <p className={styles.question}>
-                                The process of creating or improving a product
-                                or service is refered to as
+                                {response[currentQuestion].question}
                             </p>
                         </div>
                     </div>
                     <div className={styles.bottom}>
                         <div className={styles.bottomLeft}>
                             <p className={styles.heading}>ANSWER</p>
-                            <input type="text" placeholder="Type Answer..." />
+                            <input
+                                type="text"
+                                disabled={inputDisabled}
+                                value={answer}
+                                placeholder="Type Answer..."
+                                onChange={(e) => setAnswer(e.target.value)}
+                                onKeyDown={(e) =>
+                                    doIfKeyIsEnter(
+                                        e,
+                                        response[currentQuestion].answer,
+                                    )
+                                }
+                            />
                         </div>
                         <div className={styles.bottomRight}>
-                            <p className={styles.stuck}>Stuck ?</p>
-                            <Button>See Solution</Button>
+                            {!showAnswer ? (
+                                <>
+                                    <p className={styles.stuck}>Stuck ?</p>
+                                    <Button onClick={() => setShowAnswer(true)}>
+                                        See Solution
+                                    </Button>
+                                </>
+                            ) : (
+                                <p className={styles.heading}>
+                                    {response[currentQuestion].answer}
+                                </p>
+                            )}
                         </div>
                     </div>
                 </div>

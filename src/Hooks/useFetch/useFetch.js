@@ -19,7 +19,7 @@ const useFetch = (url) => {
                 }
                 dispatch({
                     type: "RESPONSE_COMPLETE",
-                    payload: { response: data },
+                    payload: { response: data.task_array },
                 });
             } catch (error) {
                 toast.error("Something went wrong!!")
