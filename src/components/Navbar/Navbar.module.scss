@@ -7,10 +7,19 @@
     padding: 43px 154px 43px 106px;
     width: 100%;
 
+    @media (max-width: "800px"){
+        padding: 21px 27px 43px 27px;
+    }
+
     .left {
         width: 125px;
         height: 57px;
         flex-shrink: 0;
+
+        @media (max-width: "800px"){
+            width: 81px;
+            height: 37px;
+        }
 
         img {
             height: 100%;

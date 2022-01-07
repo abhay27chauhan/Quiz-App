@@ -3,13 +3,13 @@
 .subCard {
     display: flex;
     flex-direction: column;
-    width: 24.7%;
     text-align: center;
     
     .top {
         display: flex;
         justify-content: space-between;
         color: $text-white;
+        gap: 30px;
 
         .accuracy, .avgTime {
             text-align: center;

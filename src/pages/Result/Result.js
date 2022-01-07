@@ -17,7 +17,7 @@ function Result() {
     return currentQuestion === 0 || currentQuestion < totalQuestions - 1 ? (
         <Redirect to="/" />
     ) : (
-        <Card>
+        <Card style={{height: "34.2vh"}}>
             <div className={styles.subCard}>
                 <div className={styles.top}>
                     <div className={styles.accuracy}>
