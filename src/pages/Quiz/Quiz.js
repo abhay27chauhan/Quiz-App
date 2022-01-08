@@ -37,7 +37,7 @@ function Quiz() {
                         category={response[currentQuestion].category}
                     />
                     <QuestionCard
-                        question={response[currentQuestion].question}
+                        response={response}
                         quesNo={currentQuestion + 1}
                         total={response.length}
                     />

@@ -7,6 +7,24 @@
     justify-content: space-between;
     padding: 20px;
 
+    .questions {
+        display: flex;
+        justify-content: flex-start;
+        overflow: hidden;
+        flex-wrap: nowrap;
+        transition: 600ms;
+
+        p {
+            width: 100%;
+            flex-shrink: 0;
+            transition: 600ms;
+        }
+
+        &::-webkit-scrollbar {
+            display: none;
+        }
+    }
+
     .heading {
         font-weight: normal;
         font-size: 0.875rem;

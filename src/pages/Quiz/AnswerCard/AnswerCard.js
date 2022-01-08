@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import toast from "react-hot-toast";
 import { useHistory } from "react-router-dom";
 
@@ -24,12 +24,20 @@ function AnswerCard({ setPaused, total, reset, m, s, correctAnswer }) {
     const [isCorrect, setIsCorrect] = useState(false);
     const [isWrong, setIsWrong] = useState(false);
 
-    function resetAfterUserAnswer(currentQuestion, total, isCorrect) {
-        reset();
+    const wrongRef = useRef();
+    const correctRef = useRef();
+
+    function runAfterAnimationEnd() {
+        isCorrect ? setIsCorrect(false) : setIsWrong(false);
         currentQuestion < total - 1
             ? setCurrentQuestion(currentQuestion + 1)
             : history.push("/result");
-        isCorrect ? setIsCorrect(false) : setIsWrong(false);
+
+        setTimeout(resetTheState, 1000);
+    }
+
+    function resetTheState() {
+        reset();
         setPaused(false);
         setShowAnswer(false);
         setInputDisabled(false);
@@ -50,11 +58,34 @@ function AnswerCard({ setPaused, total, reset, m, s, correctAnswer }) {
             }
             setAnswer("");
             setTimeTaken((state) => [...state, m * 60 + s]);
-            setTimeout(() => resetAfterUserAnswer(currentQuestion, total, isCorrect), 1000);
         } else if (e.key === "Enter" && answer.trim() == "") {
             toast.error("Type answer before submitting!!");
         }
     }
+
+    useEffect(() => {
+        const wrongImage = wrongRef.current;
+        const correctImage = correctRef.current;
+        if (!wrongImage && !correctImage) return;
+        isWrong &&
+            wrongImage.addEventListener("animationend", runAfterAnimationEnd);
+        isCorrect &&
+            correctImage.addEventListener("animationend", runAfterAnimationEnd);
+
+        return () => {
+            wrongImage &&
+                wrongImage.removeEventListener(
+                    "animationend",
+                    runAfterAnimationEnd,
+                );
+            correctImage &&
+                correctImage.addEventListener(
+                    "animationend",
+                    runAfterAnimationEnd,
+                );
+        };
+    }, [isCorrect, isWrong]);
+
     return !isCorrect && !isWrong ? (
         <div className={styles.bottom}>
             <div className={styles.bottomLeft}>
@@ -69,21 +100,24 @@ function AnswerCard({ setPaused, total, reset, m, s, correctAnswer }) {
                 />
             </div>
             <div className={styles.bottomRight}>
-                {!showAnswer ? (
+                {!showAnswer && !inputDisabled ? (
                     <>
                         <p className={styles.stuck}>Stuck ?</p>
                         <Button onClick={() => setShowAnswer(true)}>
                             See Solution
                         </Button>
                     </>
-                ) : (
+                ) : !inputDisabled ? (
                     <p className={styles.heading}>{correctAnswer}</p>
+                ) : (
+                    ""
                 )}
             </div>
         </div>
     ) : isCorrect ? (
         <div className={styles.correct}>
             <img
+                ref={correctRef}
                 className={`${styles.animate} ${styles.rotate}`}
                 src={correct}
                 alt="correct"
@@ -92,6 +126,7 @@ function AnswerCard({ setPaused, total, reset, m, s, correctAnswer }) {
     ) : (
         <div className={styles.wrong}>
             <img
+                ref={wrongRef}
                 className={`${styles.animate} ${styles.shakeX}`}
                 src={wrong}
                 alt="wrong"
