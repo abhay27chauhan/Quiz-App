@@ -39,6 +39,12 @@
             gap: 60px;
         }
 
+        .downArrow {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
         a {
             font-size: 1rem;
             color: $text-purple;
@@ -60,6 +66,18 @@
     ul {
         display: flex;
         flex-direction: column;
+        gap: 30px;
+        padding: 0px 30px;
+    }
+
+    li {
+        text-align: start;
+    }
+
+    .downArrow {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
         gap: 30px;
     }
 

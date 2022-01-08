@@ -5,6 +5,8 @@ import logo from "assets/logo.svg";
 import useWindowResize from "Hooks/useWindowResize";
 import hamburger from "assets/hamburger.svg";
 import cross from "assets/cross.svg";
+import arrow from "assets/arrow.svg";
+import arrowBig from "assets/arrowBig.svg";
 
 import styles from "./Navbar.module.scss";
 
@@ -25,17 +27,20 @@ function Navbar() {
                 {!isMobile ? (
                     <div className={styles.right}>
                         <ul>
-                            <li>
+                            <li className={styles.downArrow}>
                                 <Link>Programs</Link>
+                                <img src={arrow} alt="arrow"/>
                             </li>
-                            <li>
+                            <li className={styles.downArrow}>
                                 <Link>Live Projects</Link>
+                                <img src={arrow} alt="arrow"/>
                             </li>
                             <li>
                                 <Link>Community</Link>
                             </li>
-                            <li>
+                            <li className={styles.downArrow}>
                                 <Link>Jobs</Link>
+                                <img src={arrow} alt="arrow"/>
                             </li>
                             <li>
                                 <Link>About</Link>
@@ -69,17 +74,20 @@ function Navbar() {
                     }
                 >
                     <ul>
-                        <li>
+                        <li className={styles.downArrow}>
                             <Link>Programs</Link>
+                            <img src={arrowBig} alt="arrow"/>
                         </li>
-                        <li>
+                        <li className={styles.downArrow}>
                             <Link>Live Projects</Link>
+                            <img src={arrowBig} alt="arrow"/>
                         </li>
                         <li>
                             <Link>Community</Link>
                         </li>
-                        <li>
+                        <li className={styles.downArrow}>
                             <Link>Jobs</Link>
+                            <img src={arrowBig} alt="arrow"/>
                         </li>
                         <li>
                             <Link>About</Link>

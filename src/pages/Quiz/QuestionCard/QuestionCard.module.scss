@@ -8,16 +8,18 @@
     padding: 20px;
 
     .questions {
-        display: flex;
-        justify-content: flex-start;
-        overflow: hidden;
-        flex-wrap: nowrap;
-        transition: 600ms;
+        display: grid;
+        grid-auto-flow: column;
+        grid-auto-columns: 100%;
+        overflow: auto hidden;
+        overscroll-behavior-x: contain;
+        scroll-snap-type: x mandatory;
 
         p {
-            width: 100%;
-            flex-shrink: 0;
-            transition: 600ms;
+            scroll-snap-align: start;
+
+            overflow-y: auto;
+            overscroll-behavior-y: contain;
         }
 
         &::-webkit-scrollbar {
