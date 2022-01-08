@@ -12,7 +12,7 @@ function Home() {
     }, []);
 
     return (
-        <Card style={{height: "34.2vh"}}>
+        <Card>
             <LinkButton to="/quiz">Start Quiz</LinkButton>
         </Card>
     );

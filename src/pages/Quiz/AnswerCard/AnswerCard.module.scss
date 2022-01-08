@@ -9,7 +9,12 @@
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
 
-    .bottomRight{
+    @media (max-width: "800px") {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .bottomRight {
         display: flex;
         flex-shrink: 0;
         align-items: center;
@@ -23,14 +28,21 @@
         gap: 5px;
     }
 
-    .heading, .stuck {
+    .heading,
+    .stuck {
         font-size: 0.875rem;
         color: $text-white;
     }
 
     input {
         width: 50%;
-        padding: 3px 2px;
+        padding: 5px 3px;
+        border-radius: 5px;
+        border: none;
+
+        @media (max-width: "800px") {
+            width: 100%;
+        }
 
         &::placeholder {
             font-size: 0.875rem;
@@ -38,3 +50,78 @@
         }
     }
 }
+
+.correct,
+.wrong {
+    display: grid;
+    place-items: center;
+    height: 100%;
+}
+
+.correct {
+    background: $gradient-correct;
+}
+
+.wrong {
+    background: $gradient-wrong;
+}
+
+.animate {
+    animation-duration: 600ms;
+    animation-fill-mode: both;
+}
+
+.rotate {
+    animation-duration: 700ms;
+    animation-name: rotateInUpRight;
+}
+
+.shakeX {
+    animation-timing-function: ease-in-out;
+    animation-name: headShake;
+}
+
+@keyframes headShake {
+    0% {
+        -webkit-transform: translateX(0);
+        transform: translateX(0);
+    }
+
+    6.5% {
+        -webkit-transform: translateX(-6px) rotateY(-9deg);
+        transform: translateX(-6px) rotateY(-9deg);
+    }
+
+    18.5% {
+        -webkit-transform: translateX(5px) rotateY(7deg);
+        transform: translateX(5px) rotateY(7deg);
+    }
+
+    31.5% {
+        -webkit-transform: translateX(-3px) rotateY(-5deg);
+        transform: translateX(-3px) rotateY(-5deg);
+    }
+
+    43.5% {
+        -webkit-transform: translateX(2px) rotateY(3deg);
+        transform: translateX(2px) rotateY(3deg);
+    }
+
+    50% {
+        -webkit-transform: translateX(0);
+        transform: translateX(0);
+    }
+}
+
+@keyframes rotateInUpRight {
+    from {
+      -webkit-transform: rotate3d(0, 0, 1, -90deg);
+      transform: scale(1) rotate3d(0, 0, 1,  -170deg);
+
+    }
+  
+    to {
+      -webkit-transform: translate3d(0, 0, 0);
+      transform: scale(1.1) translate3d(0, 0, 0);
+    }
+  }

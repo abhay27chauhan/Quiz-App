@@ -6,6 +6,7 @@
     align-items: center;
     padding: 43px 154px 43px 106px;
     width: 100%;
+    transition: 350ms ease-in-out;
 
     @media (max-width: "800px"){
         padding: 21px 27px 43px 27px;
@@ -45,4 +46,33 @@
             line-height: 24px;
         }
     }
+}
+
+.dropdown{
+    background: $bg-white;
+    position: fixed;
+    height: 0;
+    width: 100vw;
+    z-index: 2;
+    text-align: center;
+    transition: 300ms ease-in-out;
+    overflow: hidden;
+
+    ul {
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+    }
+
+    a {
+        font-size: 1.5rem;
+        color: $text-purple;
+        font-weight: normal;
+        line-height: 24px;
+    }
+
+}
+
+.show {
+    height: calc(100vh - 143px);
 }

@@ -6,20 +6,13 @@ import useWindowResize from "Hooks/useWindowResize";
 
 import styles from "./Card.module.scss";
 
-function Card({ children, color, style }) {
+function Card({ children, color }) {
     const windowWidth = useWindowResize();
 
     const isMobile = windowWidth < 800;
 
     return (
-        <div
-            className={
-                isMobile
-                    ? `${styles.container} ${styles.mobileContainer}`
-                    : styles.container
-            }
-            style={style && !isMobile ? { ...style } : {}}
-        >
+        <div className={styles.container}>
             <div className={styles.card} style={{ background: color }}>
                 {children}
             </div>
