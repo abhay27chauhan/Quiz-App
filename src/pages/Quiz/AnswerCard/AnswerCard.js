@@ -3,7 +3,7 @@ import toast from "react-hot-toast";
 import { useHistory } from "react-router-dom";
 
 import { useStateValue } from "context/StateProvider";
-import { Button } from "components/StyledComponent/Button";
+import { Button, QuizCorrect, QuizWrong } from "components/StyledComponent/Button";
 import correct from "assets/correct.svg";
 import wrong from "assets/wrong.svg";
 
@@ -116,21 +116,11 @@ function AnswerCard({ setPaused, total, reset, m, s, correctAnswer }) {
         </div>
     ) : isCorrect ? (
         <div className={styles.correct}>
-            <img
-                ref={correctRef}
-                className={`${styles.animate} ${styles.rotate}`}
-                src={correct}
-                alt="correct"
-            />
+            <QuizCorrect ref={correctRef} src={correct} />
         </div>
     ) : (
         <div className={styles.wrong}>
-            <img
-                ref={wrongRef}
-                className={`${styles.animate} ${styles.shakeX}`}
-                src={wrong}
-                alt="wrong"
-            />
+            <QuizWrong ref={wrongRef} src={wrong} />
         </div>
     );
 }

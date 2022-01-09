@@ -3,10 +3,9 @@ import { Link } from "react-router-dom";
 
 import logo from "assets/logo.svg";
 import useWindowResize from "Hooks/useWindowResize";
-import hamburger from "assets/hamburger.svg";
-import cross from "assets/cross.svg";
 import arrow from "assets/arrow.svg";
 import arrowBig from "assets/arrowBig.svg";
+import { MenuToggle } from "./MenuToggle";
 
 import styles from "./Navbar.module.scss";
 
@@ -49,19 +48,7 @@ function Navbar() {
                     </div>
                 ) : (
                     <div className={styles.right}>
-                        {!showDropDown ? (
-                            <img
-                                src={hamburger}
-                                alt="hamburger"
-                                onClick={() => setShowDropdown(true)}
-                            />
-                        ) : (
-                            <img
-                                src={cross}
-                                alt="cross"
-                                onClick={() => setShowDropdown(false)}
-                            />
-                        )}
+                        <MenuToggle isOpen={showDropDown} toggle={() => setShowDropdown(!showDropDown)} />
                     </div>
                 )}
             </div>
