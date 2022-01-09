@@ -1,0 +1,20 @@
+{
+  "files": {
+    "main.css": "/Quiz-App/static/css/main.cd9056eb.css",
+    "main.js": "/Quiz-App/static/js/main.910dec9e.js",
+    "static/media/dotsLong.svg": "/Quiz-App/static/media/dotsLong.e37b719f5b7d8362eef81261a2791039.svg",
+    "static/media/dots.svg": "/Quiz-App/static/media/dots.fdf2c348ed11dc24f2c7d36a9c0fa1d6.svg",
+    "static/media/correct.svg": "/Quiz-App/static/media/correct.ef4673c092d6949c60fdfa151c8a4509.svg",
+    "static/media/wrong.svg": "/Quiz-App/static/media/wrong.830879858a7b1625d35aadce4e34a856.svg",
+    "static/media/logo.svg": "/Quiz-App/static/media/logo.111e368f9c5332d76a2a03b0f025b5b6.svg",
+    "index.html": "/Quiz-App/index.html",
+    "static/media/arrowBig.svg": "/Quiz-App/static/media/arrowBig.5868181f61cd6a26b15813873e66aff8.svg",
+    "static/media/arrow.svg": "/Quiz-App/static/media/arrow.a909ed1f5a846daf59bb1c4c6d198699.svg",
+    "main.cd9056eb.css.map": "/Quiz-App/static/css/main.cd9056eb.css.map",
+    "main.910dec9e.js.map": "/Quiz-App/static/js/main.910dec9e.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.cd9056eb.css",
+    "static/js/main.910dec9e.js"
+  ]
+}
