@@ -1,9 +1,14 @@
 import React, { useState, useEffect, useRef } from "react";
 import toast from "react-hot-toast";
 import { useHistory } from "react-router-dom";
+import { motion } from "framer-motion";
 
 import { useStateValue } from "context/StateProvider";
-import { Button, QuizCorrect, QuizWrong } from "components/StyledComponent/Button";
+import {
+    Button,
+    QuizCorrect,
+    QuizWrong,
+} from "components/StyledComponent/Button";
 import correct from "assets/correct.svg";
 import wrong from "assets/wrong.svg";
 
@@ -108,7 +113,13 @@ function AnswerCard({ setPaused, total, reset, m, s, correctAnswer }) {
                         </Button>
                     </>
                 ) : !inputDisabled ? (
-                    <p className={styles.heading}>{correctAnswer}</p>
+                    <motion.p
+                        initial={{ y: 10, opacity: 0 }}
+                        animate={{ y: 0, opacity: 1 }}
+                        className={styles.heading}
+                    >
+                        {correctAnswer}
+                    </motion.p>
                 ) : (
                     ""
                 )}
